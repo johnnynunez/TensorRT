@@ -19,3 +19,4 @@ Model Zoo
 * :ref:`torch_compile_stable_diffusion`: Compiling a Stable Diffusion model using ``torch.compile``
 * :ref:`_torch_export_gpt2`: Compiling a GPT2 model using AOT workflow (`ir=dynamo`)
 * :ref:`_torch_export_llama2`: Compiling a Llama2 model using AOT workflow (`ir=dynamo`)
+* :ref:`_torch_export_llama3.2_1B`: Compiling a Llama3.2-1B model using AOT workflow (`ir=dynamo`)

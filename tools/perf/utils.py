@@ -7,7 +7,7 @@ import tensorrt as trt
 import timm
 import torch
 import torchvision.models as models
-from transformers import AutoModel, AutoModelForCausalLM
+from transformers import AutoModel, AutoModelForCausalLM, AutoTokenizer
 
 BENCHMARK_MODEL_NAMES = {
     "vgg16",
@@ -25,14 +25,17 @@ BENCHMARK_MODEL_NAMES = {
     "apple/DCLM-7B",
     "mistralai/Mistral-7B-Instruct-v0.3",
     "microsoft/Phi-3-mini-4k-instruct",
+    "meta-llama/Llama-3.2-1B-Instruct",
 }
 
 
 def load_hf_model(model_name_hf):
     print("Loading user-specified HF model: ", model_name_hf)
+    tokenizer = AutoTokenizer.from_pretrained(model_name_hf)
     model_hf = AutoModelForCausalLM.from_pretrained(
         model_name_hf,
         trust_remote_code=True,
+        pad_token_id=tokenizer.eos_token_id,
         use_cache=False,
         attn_implementation="eager",
     ).eval()
@@ -95,6 +98,7 @@ class ModelStorage:
             "meta-llama/Meta-Llama-3.1-8B-Instruct",
             "mistralai/Mistral-7B-Instruct-v0.3",
             "microsoft/Phi-3-mini-4k-instruct",
+            "meta-llama/Llama-3.2-1B-Instruct",
         ]:
             hf_artifact = load_hf_model(name)
             return {

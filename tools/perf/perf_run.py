@@ -31,6 +31,8 @@ from utils import (
 WARMUP_ITER = 10
 results = []
 
+DEVICE = torch.device("cuda:0")
+
 
 def run_with_try_except(func):
     @wraps(func)
@@ -215,6 +217,7 @@ def run_hf_dynamo(model, input_tensors, params, precision, batch_size):
     trt_model = torchtrt.dynamo.compile(
         exp_program,
         inputs=input_tensors,
+        device=DEVICE,
         enabled_precisions={precision_to_dtype(precision)},
         truncate_double=params.get("truncate", False),
     )
