@@ -25,6 +25,7 @@ BENCHMARK_MODEL_NAMES = {
     "apple/DCLM-7B",
     "mistralai/Mistral-7B-Instruct-v0.3",
     "microsoft/Phi-3-mini-4k-instruct",
+    "microsoft/Phi-3.5-mini-instruct",
     "meta-llama/Llama-3.2-1B-Instruct",
 }
 
@@ -98,6 +99,7 @@ class ModelStorage:
             "meta-llama/Meta-Llama-3.1-8B-Instruct",
             "mistralai/Mistral-7B-Instruct-v0.3",
             "microsoft/Phi-3-mini-4k-instruct",
+            "microsoft/Phi-3.5-mini-instruct",
             "meta-llama/Llama-3.2-1B-Instruct",
         ]:
             hf_artifact = load_hf_model(name)
