@@ -127,8 +127,8 @@ jobs:
           # shellcheck disable=SC2086
           ${CONDA_RUN} ${PIP_INSTALL_TORCH}
           set -x
-          DEVICE_PROPERTIES=$(python -c "import torch; print(torch.cuda.get_device_properties(0))")
-          echo DEVICE_PROPERTIES=$DEVICE_PROPERTIES
+          ${CONDA_RUN} python -c "import torch; print(torch.cuda.get_device_properties(0))"
+
       # - name: Run Pre-Script with Caching
       #   if: ${{ inputs.pre-script != '' }}
       #   uses: ./test-infra/.github/actions/run-script-with-cache
