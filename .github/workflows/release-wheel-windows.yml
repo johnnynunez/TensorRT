@@ -82,7 +82,7 @@ jobs:
       CU_VERSION: ${{ matrix.desired_cuda }}
       UPLOAD_TO_BASE_BUCKET: ${{ matrix.upload_to_base_bucket }}
     name: ${{ matrix.build_name }}
-    runs-on: ${{ matrix.validation_runner }}
+    runs-on: windows.g4dn.xlarge
     defaults:
       run:
         shell: bash -l {0}
@@ -130,7 +130,6 @@ jobs:
           ${CONDA_RUN} python -c "import torch; print(torch.cuda.is_available())"
           ${CONDA_RUN} python -c "import torch; print(torch.cuda.get_device_name(0))"
           ${CONDA_RUN} python -c "import torch; print(torch.cuda.get_device_properties(0))"
-          nvidia-smi
 
       # - name: Run Pre-Script with Caching
       #   if: ${{ inputs.pre-script != '' }}
