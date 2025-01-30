@@ -97,9 +97,8 @@ def _(x: torch.Tensor, y: torch.Tensor, b: float = 0.2, a: int = 2) -> torch.Ten
 
 
 # %%
-# Here we reuse similar host launch code as PyTorch but we need to convert the TensorRT tensors into PyTorch tensors prior to launching the kernel
-# These operations are also in-place, so the result must be put in the the output tensors provided by TensorRT.
-# @trtp.impl("torchtrt_ex::elementwise_mul")
+# Here we use automatic plugin creation feature in Torch-TensorRT which enables plugin registration using 
+# TensorRT QDP APIs
 torch_tensorrt.dynamo.conversion.plugins.generate_plugin("torchtrt_ex::elementwise_mul")
 
 
